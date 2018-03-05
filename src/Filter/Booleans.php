@@ -2,6 +2,8 @@
 
 namespace TraderInteractive\Filter;
 
+use TraderInteractive\Exceptions\FilterException;
+
 /**
  * A collection of filters for booleans.
  */
@@ -14,15 +16,17 @@ final class Booleans
      *
      * The return value is the bool, as expected by the \TraderInteractive\Filterer class.
      *
-     * @param string|bool $value the value to filter to a boolean
-     * @param bool $allowNull Set to true if NULL values are allowed. The filtered result of a NULL value is NULL
-     * @param array $trueValues Array of values which represent the boolean true value. Values should be lower cased
-     * @param array $falseValues Array of values which represent the boolean false value. Values should be lower cased
+     * @param string|bool $value       the value to filter to a boolean
+     * @param bool        $allowNull   Set to true if NULL values are allowed. The filtered result of a NULL value is
+     *                                 NULL
+     * @param array       $trueValues  Array of values which represent the boolean true value. Values should be lower
+     *                                 cased
+     * @param array       $falseValues Array of values which represent the boolean false value. Values should be lower
+     *                                 cased
      *
      * @return bool|null the filtered $value
      *
-     * @throws Exception if $value is not a string
-     * @throws Exception if $value is not 'true' or 'false' disregarding case and whitespace
+     * @throws FilterException
      */
     public static function filter(
         $value,
@@ -39,7 +43,7 @@ final class Booleans
         }
 
         if (!is_string($value)) {
-            throw new Exception('"' . var_export($value, true) . '" $value is not a string');
+            throw new FilterException('"' . var_export($value, true) . '" $value is not a string');
         }
 
         $value = trim($value);
@@ -54,7 +58,7 @@ final class Booleans
             return false;
         }
 
-        throw new Exception(
+        throw new FilterException(
             sprintf(
                 "%s is not '%s' disregarding case and whitespace",
                 $value,

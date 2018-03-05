@@ -38,7 +38,7 @@ final class BooleansTest extends TestCase
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Filter\Exception
+     * @expectedException \TraderInteractive\Exceptions\FilterException
      * @expectedExceptionMessage "1" $value is not a string
      */
     public function filterNonStringAndNonBoolValue()
@@ -49,7 +49,7 @@ final class BooleansTest extends TestCase
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Filter\Exception
+     * @expectedException \TraderInteractive\Exceptions\FilterException
      * @expectedExceptionMessage invalid is not 'true' or 'false' disregarding case and whitespace
      */
     public function filterInvalidString()
@@ -78,7 +78,7 @@ final class BooleansTest extends TestCase
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Filter\Exception
+     * @expectedException \TraderInteractive\Exceptions\FilterException
      * @expectedExceptionMessage true is not 'y' or '1' or 'n' or '0' disregarding case and whitespace
      */
     public function filterCustomBoolValuesInvalidString()
