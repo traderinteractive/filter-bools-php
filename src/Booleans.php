@@ -34,7 +34,7 @@ final class Booleans
         array $trueValues = ['true'],
         array $falseValues = ['false']
     ) {
-        if ($allowNull === true && $value === null) {
+        if (self::valueIsNullAndValid($allowNull, $value)) {
             return null;
         }
 
@@ -42,14 +42,50 @@ final class Booleans
             return $value;
         }
 
+        self::validateAsString($value);
+
+        $value = trim($value);
+        $value = strtolower($value);
+
+        return self::validateTrueValuesArray($value, $trueValues, $falseValues);
+    }
+
+    /**
+     * Filters the boolean $value to the given $true and $false cases
+     *
+     * @param boolean $value The boolean value to convert.
+     * @param mixed   $true  The value to return on the true case.
+     * @param mixed   $false The value to return on the false case.
+     *
+     * @return mixed
+     */
+    public static function convert(bool $value, $true = 'true', $false = 'false')
+    {
+        return $value ? $true : $false;
+    }
+
+    private static function valueIsNullAndValid(bool $allowNull, $value = null) : bool
+    {
+        if ($allowNull === false && $value === null) {
+            throw new FilterException('Value failed filtering, $allowNull is set to false');
+        }
+        return $allowNull === true && $value === null;
+    }
+
+    /**
+     * @param $value
+     *
+     * @throws FilterException
+     */
+    private static function validateAsString($value)
+    {
         if (!is_string($value)) {
             throw new FilterException('"' . var_export($value, true) . '" $value is not a string');
         }
+    }
 
-        $value = trim($value);
-
-        $value = strtolower($value);
-
+    private static function validateTrueValuesArray($value, array $trueValues, array $falseValues) : bool
+    {
         if (in_array($value, $trueValues, true)) {
             return true;
         }
@@ -65,19 +101,5 @@ final class Booleans
                 implode("' or '", array_merge($trueValues, $falseValues))
             )
         );
-    }
-
-    /**
-     * Filters the boolean $value to the given $true and $false cases
-     *
-     * @param boolean $value The boolean value to convert.
-     * @param mixed   $true  The value to return on the true case.
-     * @param mixed   $false The value to return on the false case.
-     *
-     * @return mixed
-     */
-    public static function convert(bool $value, $true = 'true', $false = 'false')
-    {
-        return $value ? $true : $false;
     }
 }

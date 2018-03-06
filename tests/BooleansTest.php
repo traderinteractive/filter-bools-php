@@ -3,6 +3,7 @@
 namespace TraderInteractive\Filter;
 
 use PHPUnit\Framework\TestCase;
+use TraderInteractive\Exceptions\FilterException;
 
 /**
  * @coversDefaultClass \TraderInteractive\Filter\Booleans
@@ -34,6 +35,17 @@ final class BooleansTest extends TestCase
     public function filterAllowNullIsTrueAndNullValue()
     {
         $this->assertNull(Booleans::filter(null, true));
+    }
+
+    /**
+     * @test
+     * @covers ::filter
+     * @expectedException \TraderInteractive\Exceptions\FilterException
+     * @expectedExceptionMessage Value failed filtering, $allowNull is set to false
+     */
+    public function filterAllowNullIsFalseAndNullValue()
+    {
+        $this->assertNull(Booleans::filter(null, false));
     }
 
     /**
