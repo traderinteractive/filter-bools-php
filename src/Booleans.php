@@ -16,13 +16,13 @@ final class Booleans
      *
      * The return value is the bool, as expected by the \TraderInteractive\Filterer class.
      *
-     * @param string|bool $value       the value to filter to a boolean
-     * @param bool        $allowNull   Set to true if NULL values are allowed. The filtered result of a NULL value is
-     *                                 NULL
-     * @param array       $trueValues  Array of values which represent the boolean true value. Values should be lower
-     *                                 cased
-     * @param array       $falseValues Array of values which represent the boolean false value. Values should be lower
-     *                                 cased
+     * @param mixed $value       the value to filter to a boolean
+     * @param bool  $allowNull   Set to true if NULL values are allowed. The filtered result of a NULL value is
+     *                           NULL
+     * @param array $trueValues  Array of values which represent the boolean true value. Values should be lower
+     *                           cased
+     * @param array $falseValues Array of values which represent the boolean false value. Values should be lower
+     *                           cased
      *
      * @return bool|null the filtered $value
      *
