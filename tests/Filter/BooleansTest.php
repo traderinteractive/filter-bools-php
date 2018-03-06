@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \TraderInteractive\Filter\Booleans
+ * @covers ::<private>
  */
 final class BooleansTest extends TestCase
 {
