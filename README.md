@@ -1,7 +1,5 @@
 # filter-bools-php
 
-A filtering implementation for verifying correct data and performing typical modifications to data.
-
 [![Build Status](https://travis-ci.org/traderinteractive/filter-bools-php.svg?branch=master)](https://travis-ci.org/traderinteractive/filter-bools-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/traderinteractive/filter-bools-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/traderinteractive/filter-bools-php/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/traderinteractive/filter-bools-php/badge.svg?branch=master)](https://coveralls.io/github/traderinteractive/filter-bools-php?branch=master)
@@ -14,13 +12,11 @@ A filtering implementation for verifying correct data and performing typical mod
 [![Daily Downloads](https://poser.pugx.org/traderinteractive/filter-bools/d/daily)](https://packagist.org/packages/traderinteractive/filter-bools)
 [![Monthly Downloads](https://poser.pugx.org/traderinteractive/filter-bools/d/monthly)](https://packagist.org/packages/traderinteractive/filter-bools)
 
-## Features
+A filtering implementation for verifying correct data and performing typical modifications to data.
 
-TO DO
+## Requirements
 
-## Example
-
-TO DO
+Requires PHP 7.0 or newer and uses composer to install further PHP dependencies.  See the [composer specification](composer.json) for more details.
 
 ## Composer
 
@@ -31,28 +27,27 @@ To add the library as a local, per-project dependency use [Composer](http://getc
 composer require traderinteractive/filter-bools
 ```
 
-## Documentation
-
-TO DO
-
-#### Specification
-
-TODO
+### Functionality
 
 #### Booleans::filter
-Aliased in the filterer as `bool`, this filter verifies that the argument is a boolean value or a string that maps to one.  The second parameter
+
+This filter verifies that the argument is a boolean value or a string that maps to one.  The second parameter
 can be set to `true` to allow null values through without an error (they will stay null and not get converted to false).  The last parameters
 are lists of strings for true values and false values.  By default, the strings "true" and "false" map to their boolean counterparts.
 
 The following example converts `$value` to a boolean allowing the strings "on" and "of".
+
 ```php
 $enabled = \TraderInteractive\Filter\Booleans::filter($value, false, ['on'], ['off']);
 ```
+
 #### Booleans::convert
-Aliased in the filterer as `bool-convert`, this filter will convert a given boolean value into the provided true or false conditions. By default the
+
+This filter will convert a given boolean value into the provided true or false conditions. By default the
 return values are the strings 'true' and 'false'
 
 The following converts the boolean `$value` to either 'yes' or 'no'
+
 ```php
 $answer = \TraderInteractive\Filter\Booleans::convert($value, 'yes', 'no');
 ```
@@ -69,6 +64,7 @@ Developers may be contacted at:
 With a checkout of the code get [Composer](http://getcomposer.org) in your PATH and run:
 
 ```bash
+composer install
 ./vendor/bin/phpcs
 ./vendor/bin/phpunit
 ```
