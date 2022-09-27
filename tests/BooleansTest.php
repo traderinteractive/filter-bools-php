@@ -40,33 +40,33 @@ final class BooleansTest extends TestCase
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Exceptions\FilterException
-     * @expectedExceptionMessage Value failed filtering, $allowNull is set to false
      */
     public function filterAllowNullIsFalseAndNullValue()
     {
+        $this->expectException(\TraderInteractive\Exceptions\FilterException::class);
+        $this->expectExceptionMessage('Value failed filtering, $allowNull is set to false');
         $this->assertNull(Booleans::filter(null, false));
     }
 
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Exceptions\FilterException
-     * @expectedExceptionMessage "1" $value is not a string
      */
     public function filterNonStringAndNonBoolValue()
     {
+        $this->expectException(\TraderInteractive\Exceptions\FilterException::class);
+        $this->expectExceptionMessage('"1" $value is not a string');
         Booleans::filter(1);
     }
 
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Exceptions\FilterException
-     * @expectedExceptionMessage invalid is not 'true' or 'false' disregarding case and whitespace
      */
     public function filterInvalidString()
     {
+        $this->expectException(\TraderInteractive\Exceptions\FilterException::class);
+        $this->expectExceptionMessage("invalid is not 'true' or 'false' disregarding case and whitespace");
         Booleans::filter('invalid');
     }
 
@@ -91,11 +91,11 @@ final class BooleansTest extends TestCase
     /**
      * @test
      * @covers ::filter
-     * @expectedException \TraderInteractive\Exceptions\FilterException
-     * @expectedExceptionMessage true is not 'y' or '1' or 'n' or '0' disregarding case and whitespace
      */
     public function filterCustomBoolValuesInvalidString()
     {
+        $this->expectException(\TraderInteractive\Exceptions\FilterException::class);
+        $this->expectExceptionMessage("true is not 'y' or '1' or 'n' or '0' disregarding case and whitespace");
         $this->assertFalse(Booleans::filter('true', false, ['y', '1'], ['n', '0']));
     }
 
